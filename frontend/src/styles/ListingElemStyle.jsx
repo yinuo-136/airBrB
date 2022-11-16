@@ -12,3 +12,8 @@ export const ListingElemStyle = styled.div`
     box-shadow: 2px 4px 5px 0px #767676be;
     border-radius: 10px;
 `
+
+export const leaveReviewStyle = styled.div`
+    display: flex;
+    justify-content: center;
+`

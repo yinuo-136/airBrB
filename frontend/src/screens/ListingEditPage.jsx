@@ -10,7 +10,7 @@ import Alert from '@mui/material/Alert';
 
 const ListingEditPage = (props) => {
   const path = props.path.replace('/hostedListing/', '')
-  const info = JSON.parse(localStorage.getItem('hostListinginfo' + path));
+  const info = props.hostlistingInfo;
 
   const [title, setTitle] = React.useState(info.title);
   const [type, setType] = React.useState(info.metadata.type);
@@ -71,6 +71,7 @@ const ListingEditPage = (props) => {
         title, address, price, thumbnail, metadata: { bedrooms, amenities, bathrooms, type, published: info.metadata.published, picList: picurlList }
       }, props.token);
       if (data) {
+        localStorage.clear();
         navTo(props.nav, '/hostedListing');
       } else {
         setLoading(false);
@@ -257,5 +258,6 @@ export default ListingEditPage;
 ListingEditPage.propTypes = {
   path: PropTypes.string,
   token: PropTypes.string,
-  nav: PropTypes.func
+  nav: PropTypes.func,
+  hostlistingInfo: PropTypes.func
 }

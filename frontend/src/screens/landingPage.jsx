@@ -1,14 +1,15 @@
 // This is the landing page, default will take client to dashboard(Listing screen), all routes are defined here.
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import LoginPage from './LoginPage';
 import Dashboard from './Dashboard';
 import RegPage from './RegPage';
 import Topbar from '../components/Topbar';
-import HostedListing from './HostedListing';
-import ListingCreate from './ListingCreate';
-import ListingEditPage from './ListingEdit';
-import ListingPage from './ListingPage';
+import HostedListing from './HostedListingPage';
+import ListingCreate from './ListingCreatePage';
+import ListingEditPage from './ListingEditPage';
+import ListingPage from './ListingDetailPage';
+import BookingViewPage from './BookingsViewPage';
 import {
   Routes,
   Route,
@@ -17,15 +18,12 @@ import {
 } from 'react-router-dom';
 
 const LandingPage = () => {
-  // clear the local storeage every time the landing page is reload.
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
   // set the token and email, at the start of the app they'll be null
   const [token, setToken] = React.useState(null);
   const [email, setEmail] = React.useState(null);
   const [name, setName] = React.useState(null);
   const [listingInfo, setListingInfo] = React.useState(null);
+  const [hostlistingInfo, sethostlistingInfo] = React.useState(null);
 
   // set the navigation hook for SPA
   const navigate = useNavigate();
@@ -69,13 +67,16 @@ const LandingPage = () => {
       <Route path='/Listing/:id' element={<ListingPage nav={navigate} token={token} email={email} path={pathname} info={listingInfo}/>}>
       </Route>
 
-      <Route path='/hostedListing' element={<HostedListing nav={navigate} token={token} email={email}/>}>
+      <Route path='/hostedListing' element={<HostedListing nav={navigate} token={token} email={email} sethostlistingInfo={sethostlistingInfo}/>}>
       </Route>
 
-      <Route path='/hostedListing/:id' element={<ListingEditPage nav={navigate} path={pathname} token={token}/>}>
+      <Route path='/hostedListing/:id' element={<ListingEditPage nav={navigate} path={pathname} token={token} hostlistingInfo={hostlistingInfo}/>}>
       </Route>
 
       <Route path='/hostedListing/createListing' element={<ListingCreate nav={navigate} token={token}/>}>
+      </Route>
+
+      <Route path='/hostedListing/Listbookingview/:id' element={<BookingViewPage nav={navigate} path={pathname} token={token} hostlistingInfo={hostlistingInfo}/>}>
       </Route>
 
     </Routes>

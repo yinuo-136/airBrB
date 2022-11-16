@@ -23,7 +23,7 @@ export const navTo = (nav, route) => {
   nav(route)
 }
 
-// helper function to make server request faster
+// helper function to make server request code easiler to write
 export const makeRequest = async (path, methods, body, token) => {
   const option = {
     method: methods,

@@ -35,6 +35,8 @@ const HostedListing = (props) => {
           id={data.listings[i].id}
           token={props.token}
           nav={props.nav}
+          sethostlistingInfo = {props.sethostlistingInfo}
+          published = {info.listing.published}
         />);
       }
     }
@@ -47,7 +49,7 @@ const HostedListing = (props) => {
   return (
     <>
       <div>
-        <Button style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='large' variant="contained" onClick= { () => { navTo(props.nav, '/hostedListing/createListing') } } >Add listing</Button>
+        <Button style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='medium' variant="contained" onClick= { () => { navTo(props.nav, '/hostedListing/createListing') } } >Add listing</Button>
       </div>
       <br />
       <h5>My Listings</h5>
@@ -63,5 +65,6 @@ export default HostedListing;
 HostedListing.propTypes = {
   nav: PropTypes.func,
   token: PropTypes.string,
-  email: PropTypes.string
+  email: PropTypes.string,
+  sethostlistingInfo: PropTypes.func
 }

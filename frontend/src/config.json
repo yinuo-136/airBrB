@@ -1,3 +1,5 @@
+
 {
-	"BACKEND_PORT": 5006
+	"BACKEND_PORT": 5006,
+	"_comment": "when change back_port, please also change the baseUrl variable on top of the helpers.jsx file to ensure fetch can properly work."
 }

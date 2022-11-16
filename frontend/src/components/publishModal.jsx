@@ -160,6 +160,7 @@ export default function BasicModal (props) {
     const data = await makeRequest('/listings/publish/' + props.id, 'PUT', { availability }, props.token);
     if (data) {
       props.handleClose();
+      props.setPublished(true);
     }
   }
 
@@ -201,12 +202,13 @@ BasicModal.propTypes = {
   handleClose: PropTypes.func,
   handleOpen: PropTypes.func,
   id: PropTypes.number,
-  token: PropTypes.string
+  token: PropTypes.string,
+  setPublished: PropTypes.func
 }
 
 // use for linting purpose
 PublishInput.propTypes = {
   ava: PropTypes.array,
   counter: PropTypes.number,
-  setAva: PropTypes.func
+  setAva: PropTypes.func,
 }

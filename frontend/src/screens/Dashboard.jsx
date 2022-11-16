@@ -8,13 +8,14 @@ import Filter from '../components/Filter';
 const Dashboard = (props) => {
   const [ListingList, setListingList] = React.useState([]);
   const [filterOption, setFilterOption] = React.useState([]);
+  const [isListingEmpty, setListingEmpty] = React.useState(false);
 
-  // TODO: re-order
   // call a function to render all the list elements every first time enter the dashboard
   // or logout or when filter resets
   React.useEffect(async () => {
     const data = await makeRequest('/listings', 'GET', undefined, props.token);
     const InfoList = [];
+    const InfoListBooked = [];
     const newListing = [];
     if (data) {
       for (let i = 0; i < data.listings.length; i++) {
@@ -44,12 +45,12 @@ const Dashboard = (props) => {
         if (filterOption[0] === 'bedrooms') {
           const minBed = filterOption[1];
           const maxBed = filterOption[2];
-          if (Info.listing.metadata.bedrooms[0].length > maxBed || Info.listing.metadata.bedrooms.length < minBed) {
+          if (Info.listing.metadata.bedrooms[0].length > maxBed || Info.listing.metadata.bedrooms[0].length < minBed) {
             continue;
           }
         }
 
-        // check the bedroom number if use bedrooms filter
+        // check the bedroom number if use price filter
         if (filterOption[0] === 'price') {
           const minPrice = filterOption[1];
           const maxPrice = filterOption[2];
@@ -71,7 +72,7 @@ const Dashboard = (props) => {
           // transfer aimed dates into value
           const expstartDateVal = parseInt(startdd) + 30 * parseInt(startmm) + 365 * parseInt(startyy);
           const expEndDateVal = parseInt(enddd) + 30 * parseInt(endmm) + 365 * parseInt(endyy);
-          numdays = expEndDateVal - expstartDateVal === 0 ? 1 : expEndDateVal - expstartDateVal;
+          numdays = expEndDateVal - expstartDateVal;
           const ava = Info.listing.availability;
           for (let i = 0; i < ava.length; i += 2) {
             const startDateVal = parseInt(ava[i].day) + 30 * parseInt(ava[i].month) + 365 * parseInt(ava[i].year);
@@ -89,17 +90,48 @@ const Dashboard = (props) => {
         Info.listing.id = listingInfo.id;
         Info.listing.isUseDate = isUseDate;
         Info.listing.dateDiff = numdays;
-        // push info to the array that stores all the info
-        InfoList.push(Info.listing);
+
+        // put the listing with status pending/accepted at the front
+        if (props.token !== null) {
+          const bookingInfo = await makeRequest('/bookings', 'GET', undefined, props.token);
+          if (bookingInfo) {
+            let isFind = false;
+            for (let i = 0; i < bookingInfo.bookings.length; i++) {
+              if (bookingInfo.bookings[i].owner === props.email && parseInt(bookingInfo.bookings[i].listingId) === listingInfo.id) {
+                if (bookingInfo.bookings[i].status === 'pending' || bookingInfo.bookings[i].status === 'accepted') {
+                  InfoListBooked.push(Info.listing);
+                  isFind = true;
+                  break;
+                }
+              }
+            }
+            if (!isFind) {
+              InfoList.push(Info.listing);
+            }
+          }
+        } else {
+          InfoList.push(Info.listing);
+        }
       }
-      // sort the list
+      // sort lists
+      InfoListBooked.sort(function (a, b) {
+        return a.title.localeCompare(b.title);
+      });
       InfoList.sort(function (a, b) {
         return a.title.localeCompare(b.title);
       });
 
       // add the info to array for dom construction
+      for (let i = 0; i < InfoListBooked.length; i++) {
+        newListing.push(<ListingElement info={InfoListBooked[i]} nav={props.nav} setListingInfo={props.setlistingInfo} email={props.email} token={props.token} hasbooked='booked'/>);
+      }
       for (let i = 0; i < InfoList.length; i++) {
-        newListing.push(<ListingElement info={InfoList[i]} nav={props.nav} setListingInfo={props.setlistingInfo}/>);
+        newListing.push(<ListingElement info={InfoList[i]} nav={props.nav} setListingInfo={props.setlistingInfo} email={props.email} token={props.token}/>);
+      }
+      if (InfoListBooked.length === 0 && InfoList.length === 0) {
+        setListingEmpty(true);
+      } else {
+        setListingEmpty(false);
       }
       setListingList(newListing);
     }
@@ -119,6 +151,9 @@ const Dashboard = (props) => {
       }}>
         {ListingList}
       </div>
+      {isListingEmpty &&
+        <h4 style={{ textAlign: 'center' }}>Sorry, no available listings at this time.</h4>
+      }
     </>
   );
 }
