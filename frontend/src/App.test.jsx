@@ -1,6 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import App from './App';
+import { render, screen } from '@testing-library/react';
 import { shallow } from 'enzyme';
 import Topbar from './components/Topbar';
 import LoginPage from './screens/LoginPage';
@@ -24,12 +23,11 @@ describe('back to dashboard button', () => {
     const submitButtondiv = form.find('div').at(1);
     expect(submitButtondiv).toHaveLength(1);
   });
-}); 
-
+});
 
 // 2. Test the behavior of topbar which is the top navigate bar contains serveral items
 describe('Topbar', () => {
-  it('shows a login button and register button when no token is passed in', () => {   
+  it('shows a login button and register button when no token is passed in', () => {
     render(<Topbar />);
     // expect a login button
     expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
@@ -50,14 +48,14 @@ describe('Topbar', () => {
     expect(screen.getByRole('button', { name: 'Log out' })).toBeInTheDocument();
   })
 
-  it('shows mylistings when at dashboard', ()=> {
+  it('shows mylistings when at dashboard', () => {
     // pass a token and pathname prop and test the properties
     render(<Topbar token='a random valid token' pathname='/'/>);
     // expect a logout button no matter the pathname
     expect(screen.getByRole('button', { name: 'Mylistings' })).toBeInTheDocument();
   })
 
-  it('shows dashboard when at hostedlisting page, shows mylistings when at dashboard', ()=> {
+  it('shows dashboard when at hostedlisting page, shows mylistings when at dashboard', () => {
     // pass a token and pathname prop and test the properties
     render(<Topbar token='a random valid token' pathname='/hostedListing'/>);
     // expect a logout button no matter the pathname
@@ -66,7 +64,7 @@ describe('Topbar', () => {
 })
 
 // 3. Test filter props
-describe('Filter', ()=> {
+describe('Filter', () => {
   it('has a button and filter text on it on the dashboard', () => {
     render(<Dashboard />);
     expect(screen.getByRole('button', { name: 'Filter' })).toBeInTheDocument();
@@ -80,6 +78,6 @@ describe('Filter', ()=> {
   it('has a select box to select different filters', () => {
     render(<Dashboard />);
     expect(screen.getByText('None')).toBeInTheDocument();
-    const select = screen.getByText('None');
+    screen.getByText('None');
   })
 }); 
