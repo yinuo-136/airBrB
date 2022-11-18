@@ -231,6 +231,7 @@ const ListingPage = (props) => {
         <div>
         <h6>Start:</h6>
         <TextField
+        name="bookingStartDD"
         id="outlined-basic"
         type='number'
         label="DD"
@@ -240,6 +241,7 @@ const ListingPage = (props) => {
         onChange={(event) => setStartdd(event.target.value)}
         />
         <TextField
+        name="bookingStartMM"
         id="outlined-basic"
         type='number'
         label="MM"
@@ -249,6 +251,7 @@ const ListingPage = (props) => {
         onChange={(event) => setStartmm(event.target.value)}
         />
         <TextField
+        name="bookingStartYY"
         id="outlined-basic"
         type='number'
         label="YYYY"
@@ -262,6 +265,7 @@ const ListingPage = (props) => {
         <div>
         <h6>End:</h6>
         <TextField
+        name="bookingEndDD"
         id="outlined-basic"
         type='number'
         label="DD"
@@ -271,6 +275,7 @@ const ListingPage = (props) => {
         onChange={(event) => setEnddd(event.target.value)}
         />
         <TextField
+        name="bookingEndMM"
         id="outlined-basic"
         type='number'
         label="MM"
@@ -280,6 +285,7 @@ const ListingPage = (props) => {
         onChange={(event) => setEndmm(event.target.value)}
         />
         <TextField
+        name="bookingEndYY"
         id="outlined-basic"
         type='number'
         label="YYYY"
@@ -289,7 +295,7 @@ const ListingPage = (props) => {
         onChange={(event) => setEndyy(event.target.value)}
         />
         </div>
-        <Button size='medium' variant="contained" onClick={bookhandler}>Confirm</Button>
+        <Button name="bookingConfirmButton" size='medium' variant="contained" onClick={bookhandler}>Confirm</Button>
         {isBookSucceed &&
         <>
         <br />

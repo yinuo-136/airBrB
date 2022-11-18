@@ -95,6 +95,7 @@ const ListingEditPage = (props) => {
         <div style={{ textAlign: 'center' }}><h6>Basic info</h6></div>
         <ListingInputStyle>
           <TextField
+            name='EditTitle'
             label="title"
             type="text"
             variant="filled"
@@ -208,13 +209,13 @@ const ListingEditPage = (props) => {
 
         <br />
         <div style={{ textAlign: 'center' }}><h6>change to a new Thumbnail</h6></div>
-        <ListingInputStyle><input type="file" onChange={(event) => setThumbnail(event.target.files[0])}/></ListingInputStyle>
+        <ListingInputStyle><input name="EditThumbnail" type="file" onChange={(event) => setThumbnail(event.target.files[0])}/></ListingInputStyle>
 
         <br />
         <div style={{ textAlign: 'center' }}><h6>Amenities</h6></div>
         <ListingInputStyle>
           <textarea
-          style={{ width: 30 + 'vw', height: 10 + 'vw' }}
+          style={{ width: 30 + 'vw', height: 20 + 'vh' }}
           placeholder='Describe all the amenities here.'
           onChange={(event) => setAmen(event.target.value)}
           value={amenities}>
@@ -244,7 +245,7 @@ const ListingEditPage = (props) => {
             </LoadingButton>
           }
           {!isLoading &&
-            <Button style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={editListhandler}>Save changes</Button>
+            <Button name='confirmEditButton' style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={editListhandler}>Save changes</Button>
           }
         </div>
       </ListingFormStyle>

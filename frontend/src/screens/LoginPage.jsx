@@ -44,7 +44,7 @@ const LoginPage = (props) => {
         </Form.Group>
 
         <div style={{ textAlign: 'center' }}>
-          <Button style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={login}>Log in</Button>
+          <Button name="submitloginButton" style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={login}>Log in</Button>
         </div>
       </Form>
       </RegFormStyle>

@@ -11,7 +11,7 @@ const BookingRequest = (props) => {
     const data = await makeRequest('/bookings/accept/' + props.bookingInfo.id, 'PUT', undefined, props.token);
     if (data) {
       setConfirmed(true);
-      props.setDoneListingOp(Math.random());
+      props.setDoneListingOp(Math.floor(Math.random() * 100000));
     }
   }
 
@@ -20,7 +20,7 @@ const BookingRequest = (props) => {
     const data = await makeRequest('/bookings/decline/' + props.bookingInfo.id, 'PUT', undefined, props.token);
     if (data) {
       setConfirmed(true);
-      props.setDoneListingOp(Math.random());
+      props.setDoneListingOp(Math.floor(Math.random() * 100000));
     }
   }
   return (

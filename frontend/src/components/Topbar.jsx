@@ -60,20 +60,20 @@ const Topbar = (props) => {
 
         {/* if user not login/registerd, show reg and login button */}
         {!props.token &&
-          <><Button size="large" color="inherit" onClick={showReg}>Register</Button>
-          <Button size="large" color="inherit" onClick={showLogin}>Login</Button></>
+          <><Button size="large" color="inherit" onClick={showReg} name='regButton'>Register</Button>
+          <Button name="logInButton" size="large" color="inherit" onClick={showLogin}>Login</Button></>
         }
 
         {/* if user has login/registerd, show user listing page button */}
         {props.token &&
            <Stack spacing={2} direction="row">
             {props.pathname === '/' &&
-              <Button size="large" color="inherit" onClick={showMyListings}>Mylistings</Button>
+              <Button name='mylistingsButton' size="large" color="inherit" onClick={showMyListings}>Mylistings</Button>
             }
             {props.pathname.includes('/hostedListing') &&
               <Button size="large" color="inherit" onClick={showDashboard}>Dashboard</Button>
             }
-            <Button size="large" color="inherit" onClick={logout}>Log out</Button>
+            <Button name="logOutButton" size="large" color="inherit" onClick={logout}>Log out</Button>
             </Stack>
         }
       </Toolbar>

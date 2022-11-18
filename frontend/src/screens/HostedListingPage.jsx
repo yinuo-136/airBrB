@@ -49,7 +49,7 @@ const HostedListing = (props) => {
   return (
     <>
       <div>
-        <Button style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='medium' variant="contained" onClick= { () => { navTo(props.nav, '/hostedListing/createListing') } } >Add listing</Button>
+        <Button name="addlistingsButton" style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='medium' variant="contained" onClick= { () => { navTo(props.nav, '/hostedListing/createListing') } } >Add listing</Button>
       </div>
       <br />
       <h5>My Listings</h5>

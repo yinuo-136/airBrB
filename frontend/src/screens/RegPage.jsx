@@ -30,7 +30,7 @@ const RegPage = (props) => {
 
   return (
     <>
-      <div><Button style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='large' variant="contained" onClick= { () => { navTo(props.nav, '/') } } >Back</Button></div>
+      <div><Button name='RegBackButton' style={{ 'margin-left': 10 + 'px', 'margin-top': 10 + 'px' }} size='large' variant="contained" onClick= { () => { navTo(props.nav, '/') } } >Back</Button></div>
       <br />
       <br />
       <RegFormStyle>
@@ -64,7 +64,7 @@ const RegPage = (props) => {
 
     {isPasswordCorrect &&
       <div style={{ textAlign: 'center' }}><Alert severity="success">Password confirmed</Alert>
-      <Button style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={register}>Sign up</Button></div>
+      <Button name="regFormSubmitButton" style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={register}>Sign up</Button></div>
     }
     </Form>
     </RegFormStyle>

@@ -73,10 +73,7 @@ const HostListingElement = (props) => {
         </h4>
         </HostListingtitleStyle>
         <h6>
-          type: {props.type}&nbsp;&nbsp; price(per night): ${props.price}&nbsp;&nbsp; beds: {props.beds}&nbsp;&nbsp; bathrooms: {props.bathrooms}
-        </h6>
-        <h6>
-          reviews: {props.review.length}
+          type: {props.type}&nbsp;&nbsp; price(per night): ${props.price}&nbsp;&nbsp; bed(s): {props.beds}&nbsp;&nbsp; bathroom(s): {props.bathrooms}&nbsp;&nbsp;review(s): {props.review.length}
         </h6>
         <h6>
         <Rating name="half-rating-read" value={averageRating} precision={0.1} size="small" readOnly />
@@ -97,7 +94,7 @@ const HostListingElement = (props) => {
           </IconButton>
         </Tooltip>
 
-        {/* if publsished, show unpublish button, if not publish, show publish button */}
+        {/* if published, show unpublish button, if not publish, show publish button */}
         {published &&
           <Tooltip title="Unpublish">
           <IconButton aria-label="unpublish" onClick={handleUnpulish}>

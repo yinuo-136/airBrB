@@ -21,6 +21,7 @@ const BedRoomInput = (props) => {
       <div style={{ textAlign: 'center' }}><h6>Bedroom{props.brcounter + 1}</h6></div>
       <ListingInputStyle>
         <TextField
+          name="createBedroomType"
           label="bedroom type"
           type="text"
           variant="filled"
@@ -29,6 +30,7 @@ const BedRoomInput = (props) => {
         />
 
         <TextField
+        name="createBedroomNumber"
           label="number of beds"
           type="number"
           variant="filled"

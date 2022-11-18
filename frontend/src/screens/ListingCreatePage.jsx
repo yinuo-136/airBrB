@@ -90,6 +90,7 @@ const ListingCreate = (props) => {
         <div style={{ textAlign: 'center' }}><h6>Basic info</h6></div>
         <ListingInputStyle>
           <TextField
+            name='createTitle'
             label="title"
             type="text"
             variant="filled"
@@ -99,6 +100,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+            name= "createType"
             label="property type"
             type="text"
             variant="filled"
@@ -112,6 +114,7 @@ const ListingCreate = (props) => {
         <div style={{ textAlign: 'center' }}><h6>address</h6></div>
         <ListingInputStyle>
           <TextField
+            name="createNumber"
             label="house number"
             type="number"
             variant="filled"
@@ -121,6 +124,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+            name="createStreet"
             label="street"
             type="text"
             variant="filled"
@@ -130,6 +134,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+          name="createSuburb"
             label="suburb"
             type="text"
             variant="filled"
@@ -139,6 +144,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+          name="createCity"
             label="city"
             type="text"
             variant="filled"
@@ -148,6 +154,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+          name="createState"
             label="state"
             type="text"
             variant="filled"
@@ -157,6 +164,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+          name="createPostcode"
             label="postcode"
             type="number"
             variant="filled"
@@ -166,6 +174,7 @@ const ListingCreate = (props) => {
           />
 
           <TextField
+          name="createCountry"
             label="country"
             type="text"
             variant="filled"
@@ -179,6 +188,7 @@ const ListingCreate = (props) => {
         <div style={{ textAlign: 'center' }}><h6>price per night</h6></div>
         <ListingInputStyle>
           <TextField
+          name="createPrice"
             label="amount"
             type="number"
             variant="filled"
@@ -192,6 +202,7 @@ const ListingCreate = (props) => {
         <div style={{ textAlign: 'center' }}><h6>numbers of bathrooms</h6></div>
         <ListingInputStyle>
           <TextField
+            name="createBathroom"
             label="amount"
             type="number"
             variant="filled"
@@ -203,13 +214,14 @@ const ListingCreate = (props) => {
 
         <br />
         <div style={{ textAlign: 'center' }}><h6>Thumbnail</h6></div>
-        <ListingInputStyle><input type="file" onChange={(event) => setThumbnail(event.target.files[0])}/></ListingInputStyle>
+        <ListingInputStyle><input name="createThumbnail" type="file" onChange={(event) => setThumbnail(event.target.files[0])}/></ListingInputStyle>
 
         <br />
         <div style={{ textAlign: 'center' }}><h6>Amenities</h6></div>
         <ListingInputStyle>
           <textarea
-          style={{ width: 30 + 'vw', height: 10 + 'vw' }}
+          name="createAmenities"
+          style={{ width: 30 + 'vw', height: 20 + 'vh' }}
           placeholder='Describe all the amenities here.'
           onChange={(event) => setAmen(event.target.value)}
           value={amenities}>
@@ -219,7 +231,7 @@ const ListingCreate = (props) => {
         <br />
         <div style={{ textAlign: 'center' }}>
           <h6>properties of bedrooms</h6>
-          <button onClick={addbedroom}>add a bedroom</button>
+          <button name="addBedroomButton" onClick={addbedroom}>add a bedroom</button>
           <br />
         </div>
         {bedroomList}
@@ -237,7 +249,7 @@ const ListingCreate = (props) => {
             </LoadingButton>
           }
           {!isLoading &&
-            <Button style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={createListhandler}>Create</Button>
+            <Button name="createListing" style={{ 'margin-top': 10 + 'px' }} variant="contained" onClick={createListhandler}>Create</Button>
           }
         </div>
       </ListingFormStyle>

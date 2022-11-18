@@ -24,6 +24,7 @@ const PublishInput = (props) => {
     <h6>Start Date:</h6>
     <div>
       <TextField
+        name="publishStartDD"
         style={{ width: 20 + '%' }}
         type='number'
         label="Day"
@@ -34,6 +35,7 @@ const PublishInput = (props) => {
       />
       <>&nbsp;&nbsp;</>
       <TextField
+        name="publishStartMM"
         style={{ width: 35 + '%' }}
         type='number'
         label="Month"
@@ -44,6 +46,7 @@ const PublishInput = (props) => {
       />
       <>&nbsp;&nbsp;</>
       <TextField
+      name="publishStartYY"
       style={{ width: 30 + '%' }}
       type='number'
       label="Year"
@@ -56,6 +59,7 @@ const PublishInput = (props) => {
     <h6>End Date:</h6>
     <div>
       <TextField
+      name="publishEndDD"
         style={{ width: 20 + '%' }}
         type='number'
         label="Day"
@@ -66,6 +70,7 @@ const PublishInput = (props) => {
       />
       <>&nbsp;&nbsp;</>
       <TextField
+      name="publishEndMM"
         style={{ width: 35 + '%' }}
         type='number'
         label="Month"
@@ -76,6 +81,7 @@ const PublishInput = (props) => {
       />
       <>&nbsp;&nbsp;</>
       <TextField
+      name="publishEndYY"
         style={{ width: 30 + '%' }}
         type='number'
         label="Year"
@@ -177,7 +183,7 @@ export default function BasicModal (props) {
             Set available times
           </Typography>
           <div>
-            <button onClick={getPubInput}>add time</button>
+            <button name="addPublishtimeButton" onClick={getPubInput}>add time</button>
             <br />
             <br />
           </div>
@@ -189,7 +195,7 @@ export default function BasicModal (props) {
           }
 
           <br />
-          <Button variant="contained" onClick={publishListing}>Publish</Button>
+          <Button name="publishModalButton" variant="contained" onClick={publishListing}>Publish</Button>
         </Box>
       </Modal>
     </div>

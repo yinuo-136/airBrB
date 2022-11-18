@@ -21,7 +21,7 @@ const BookingElement = (props) => {
   return (
   <>
       <BookingElementStyle>
-        <h6>Id: {props.bookingInfo.id}&nbsp;
+        <h6 name='BookingStatusInfo'>Id: {props.bookingInfo.id}&nbsp;
         Price: ${props.bookingInfo.totalPrice}&nbsp;
         From: {props.bookingInfo.dateRange.startdd}/{props.bookingInfo.dateRange.startmm}/{props.bookingInfo.dateRange.startyy}&nbsp;
         To: {props.bookingInfo.dateRange.enddd}/{props.bookingInfo.dateRange.endmm}/{props.bookingInfo.dateRange.endyy}&nbsp;

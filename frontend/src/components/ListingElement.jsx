@@ -27,7 +27,7 @@ const ListingElement = (props) => {
       <h5 style={{ textAlign: 'center' }}>{props.info.title}</h5>
       <h5>Reviews: {props.info.reviews.length}</h5>
       <div style={{ float: 'right' }}>
-        <Button variant="contained" size="small" onClick={showListingDetails}>More Info</Button>
+        <Button name="listingInfoButton" variant="contained" size="small" onClick={showListingDetails}>More Info</Button>
       </div>
       {props.hasbooked &&
         <>Booking(s) made on this listing</>
